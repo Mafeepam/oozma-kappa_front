@@ -1,7 +1,3 @@
-function voltarParaReservas() {
-  window.location.href = "reservas.html";
-}
-
 document.addEventListener('DOMContentLoaded', async () => {
   const API_BASE = 'http://localhost:8080/api';
   
@@ -22,8 +18,16 @@ document.addEventListener('DOMContentLoaded', async () => {
       card.classList.add('espaco-card');
       card.innerText = espaco.nome;
       card.dataset.id = espaco.id;  // para referência posterior
+      
+      // Ao clicar, remove a seleção de todos os cards e adiciona ao atual,
+      // garantindo que apenas um seja selecionado por reserva.
       card.onclick = () => {
-        card.classList.toggle('selected');
+        // Remove a classe 'selected' de todos os cards
+        document.querySelectorAll('.espaco-card.selected').forEach(element => {
+          element.classList.remove('selected');
+        });
+        // Adiciona a classe 'selected' somente no card clicado
+        card.classList.add('selected');
       };
       container.appendChild(card);
     });
@@ -104,3 +108,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   window.voltarParaReservas = voltarParaReservas;
 });
+
+function voltarParaReservas() {
+  window.location.href = "reservas.html";
+}
