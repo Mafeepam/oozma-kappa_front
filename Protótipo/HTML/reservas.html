@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservas</title>
+  <link rel="stylesheet" href="/Protótipo/CSS/styleReserva.css">
+</head>
+<body>
+
+  <div class="sidebar">
+    <div>
+      <div class="logo">
+        <img src="/Protótipo/Imagens/logo.png" alt="Logo">
+      </div>
+      <div class="menu">
+        <a href="main.html">Início</a>
+        <a href="reservas.html" class="active">Reservas</a>
+        <a href="login_1.html" class="logout" onclick="logout()">⟵ Logout</a>
+      </div>
+    </div>
+    <div class="profile">
+      <img src="/Protótipo/Imagens/Fernando Cezar.jpg" alt="Avatar Fernando">
+      <div>
+        <strong>Fernando</strong><br>
+        <small class="editar" onclick="window.location.href='editar_perfil.html'">editar perfil</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="section-header">
+    <div class="section-title">📅 Próximas Reservas</div>
+  
+    <div class="reservas" id="listaReservas">
+      <!-- Cards de reserva serão inseridos aqui via JavaScript -->
+    </div>
+  </div>
+<div class="nova-reserva-container" onclick="abrirFormularioReserva()">
+  <div class="btn-reservar">+</div>
+  <p class="texto-botao">Solicitar novas reservas</p>
+</div>
+
+    
+    
+  
+    
+    
+
+  <script src="/Protótipo/JS/reserva.js"></script>
+</body>
+</html>

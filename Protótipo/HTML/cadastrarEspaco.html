@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Espaço Acadêmico</title>
+    <link rel="stylesheet" href="/Protótipo/CSS/styleCadastrarEspaco.css">
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div>
+      <div class="logo">
+        <img src="/Protótipo/Imagens/logo.png" alt="Logo">
+      </div>
+      <div class="menu">
+        <a href="admin.html">Início</a>
+        <a href="espacosacademicos.html" class="active">Espaços Acadêmicos</a>
+        <a href="professores.html">Professores</a>
+        <a href="login_1.html" class="logout" onclick="logout()">⟵ Logout</a>
+      </div>
+    </div>
+    <div class="profile">
+      <img src="/Protótipo/Imagens/5987462.png" alt="Avatar Fernando">
+      <div>
+        <strong>Admin</strong><br>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <h1 class="section-title">Cadastrar Espaço Acadêmico</h1>
+    <div class="form-container">
+      <div class="bottom-section">
+        <h3>Cadastrar Novo Espaço</h3>
+        <form id="cadastroForm">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome" placeholder="Ex: Sala 101" required />
+
+          <label for="tipo">Tipo:</label>
+          <select id="tipo" name="tipo" required>
+            <option value="sala">Sala</option>
+            <option value="laboratorio">Laboratório</option>
+            <option value="auditorio">Auditório</option>
+          </select>
+
+          <label for="capacidade">Capacidade:</label>
+          <input type="number" id="capacidade" name="capacidade" placeholder="Ex: 40" required />
+
+          <div class="botoes">
+            <button type="submit">Cadastrar</button>
+            <button type="button" onclick="cancelarCadastro()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/Protótipo/JS/cadastrarEspacos.js"></script>
+</body>
+</html>

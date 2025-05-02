@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editar Perfil</title>
+  <link rel="stylesheet" href="/Protótipo/CSS/styleeditarperfil.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <div>
+      <div class="logo">
+        <img src="/Protótipo/Imagens/logo.png" alt="Logo" />
+      </div>
+      <div class="menu">
+        <a href="main.html">Início</a>
+        <a href="reservas.html">Reservas</a>
+        <a href="login_1.html" class="logout" onclick="logout()">⟵ Logout</a>
+      </div>
+    </div>
+    <div class="profile">
+      <img src="/Protótipo/Imagens/Fernando Cezar.jpg" alt="Avatar Fernando" />
+      <div>
+        <strong>Fernando</strong><br />
+        <small class="editar" onclick="window.location.href='editar_perfil.html'">editar perfil</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <h1>Perfil</h1>
+    <div class="perfil-box">
+      <div class="perfil-header">
+        <img src="/Protótipo/Imagens/Fernando Cezar.jpg" alt="Avatar" />
+        <h2>Fernando Borges</h2>
+      </div>
+
+      <div class="perfil-info">
+        <h3>Informações básicas</h3>
+        <form id="formPerfil" class="info-grid">
+          <div class="campo">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" value="Fernando Borges" />
+          </div>
+          <div class="campo">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="fernando.borges@pro.ucsal.br" />
+          </div>
+          <div class="campo">
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" name="telefone" value="(xx) xxxxx-xxxx" />
+          </div>
+          <div class="campo">
+            <label for="curso">Curso:</label>
+            <input type="text" id="curso" name="curso" value="Engenharia de Software" />
+          </div>
+          <div class="botoes">
+            <button type="submit">Salvar alterações</button>
+          </div>
+        </form>
+      </div>
+      
+
+  <script src="/Protótipo/JS/editarperfil.js"></script>
+</body>
+</html>

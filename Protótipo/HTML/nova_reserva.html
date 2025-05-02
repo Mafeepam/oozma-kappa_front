@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Reserva</title>
+  <link rel="stylesheet" href="/Protótipo/CSS/stylenovareserva.css">
+</head>
+<body>
+
+  <div class="sidebar">
+    <div>
+      <div class="logo">
+        <img src="/Protótipo/Imagens/logo.png" alt="Logo">
+      </div>
+      <div class="menu">
+        <a href="main.html">Início</a>
+        <a href="reservas.html" class="active">Reservas</a>
+        <a href="login_1.html" class="logout" onclick="logout()">⟵ Logout</a>
+      </div>
+    </div>
+    <div class="profile">
+      <img src="/Protótipo/Imagens/Fernando Cezar.jpg" alt="Avatar Fernando">
+      <div>
+        <strong>Fernando</strong><br>
+        <small class="editar" onclick="window.location.href='editar_perfil.html'">editar perfil</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <button class="btn-fechar" onclick="voltarParaReservas()">❌</button>
+    <h2>Nova reserva</h2>
+    <form id="formReserva">
+      <div class="form-left">
+        <div class="form-group-horizontal">
+          <label><input type="checkbox" name="tipo" value="Aula"> Aula</label>
+          <label><input type="checkbox" name="tipo" value="Evento"> Evento</label>
+        </div>
+  
+        <div class="form-group">
+          <label for="data">Data</label>
+          <div class="input-icon">
+            <input type="date" name="data" id="data" required>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="capacidade">Capacidade</label>
+          <select name="capacidade" id="capacidade">
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="60">60</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="computador">Computador</label>
+          <select name="computador" id="computador">
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+          </select>
+        </div>
+  
+        <div class="form-group horario-group">
+          <label for="inicio">Horário</label>
+          <div class="horario-selects">
+            <select name="inicio" id="inicio"></select>
+            <span>às</span>
+            <select name="fim" id="fim"></select>
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-right">
+        <h3>Espaços disponíveis</h3>
+        <div id="espacos" class="espacos-grid"></div>
+      </div>
+  
+      <button type="submit">Enviar solicitação</button>
+    </form>
+  </div>
+  
+
+  <script src="/Protótipo/JS/novareserva.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espaços Acadêmicos</title>
+    <link rel="stylesheet" href="/Protótipo/CSS/styleespacos.css">
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div>
+      <div class="logo">
+        <img src="/Protótipo/Imagens/logo.png" alt="Logo">
+      </div>
+      <div class="menu">
+        <a href="admin.html">Início</a>
+        <a href="espacosacademicos.html" class="active">Espaços Acadêmicos</a>
+        <a href="professores.html">Professores</a>
+        <a href="login_1.html" class="logout" onclick="logout()">⟵ Logout</a>
+      </div>
+    </div>
+    <div class="profile">
+      <img src="/Protótipo/Imagens/5987462.png" alt="Avatar Fernando">
+      <div>
+        <strong>Admin</strong><br>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <h1 class="section-title">Espaços Acadêmicos</h1>
+    <br>
+    <div class="espacos-list">
+      <!-- Botão de cadastro com a classe correta -->
+      <a href="cadastrarEspaco.html" class="btn-cadastrar">Cadastrar Novo Espaço</a>
+
+      <input type="text" id="search" onkeyup="filtrarEspacos()" placeholder="Pesquisar espaço...">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Capacidade</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-espacos">
+          <!-- A lista de espaços será gerada aqui -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/Protótipo/JS/espacosAcademicos.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Início</title>
+  <link rel="stylesheet" href="/Protótipo/CSS/styleMain.css">
+</head>
+<body>
+
+  <div class="sidebar">
+    <div>
+      <div class="logo">
+        <img src="/Protótipo/Imagens/logo.png" alt="Logo">
+      </div>
+      <div class="menu">
+        <a href="main.html" class="active">Início</a>
+        <a href="reservas.html">Reservas</a>
+        <a href="login_1.html" class="logout" onclick="logout()">⟵ Logout</a>
+      </div>
+    </div>
+    <div class="profile">
+      <img src="/Protótipo/Imagens/Fernando Cezar.jpg" alt="Avatar Fernando">
+      <div>
+        <strong>Fernando</strong><br>
+        <small class="editar" onclick="window.location.href='editar_perfil.html'">editar perfil</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="section-title">📅 Próximas Reservas</div>
+
+    <div class="reservas" id="listaReservas">
+      <!-- Cards de reserva serão inseridos aqui via JavaScript -->
+    </div>  
+
+    <div class="bottom-section">
+      <div class="calendario-box">
+        <div class="container">
+          <div class="header">
+            <h2 id="monthTitle">Mês e Ano</h2>
+          </div>
+
+          <div class="controls">
+            <button onclick="changeMonth(-1)">&lt; Mês anterior</button>
+            <button onclick="changeMonth(1)">Próximo mês &gt;</button>
+          </div>
+
+          <div id="calendar" class="calendar"></div>
+
+          <div class="footer">
+            Total de reservas: <span id="totalReservas">0</span>
+            <div style="margin-top: 10px;">
+              <button onclick="resetarReservas()" class="btn-reset">Resetar Reservas</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="espacos-mais">
+        <div class="espacos-title">Espaços mais reservados</div>
+        <div class="espacos-lista">
+          <span>Lami 4</span>
+          <span>Lami 3</span>
+          <span>Lami 1</span>
+          <span>Auditório 3</span>
+          <span>Auditório Reitoria</span>
+          <span>Auditório 1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="/Protótipo/JS/script.js"></script>
+</body>
+</html>

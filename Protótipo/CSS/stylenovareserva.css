@@ -1,0 +1,236 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    display: flex;
+    height: 100vh;
+    background-color: #f1f1f8;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: #f5f5f5;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 10px;
+  }
+  
+  .logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo img {
+    width: 125px;
+  }
+  
+  .menu a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-radius: 8px;
+  }
+  
+  .menu a.active {
+    background-color: #bfcaff;
+  }
+  
+  .menu a.logout {
+    color: red;
+    border: 1px solid red;
+    background-color: #ffecec;
+  }
+  
+  .profile {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .profile img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+  }
+  
+  .editar {
+    cursor: pointer;
+    font-size: 12px;
+    color: #555;
+  }
+  
+  /* Form container (modal estilo) */
+  .form-container {
+    background: white;
+    border-radius: 16px;
+    padding: 30px 40px;
+    margin: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 750px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+
+  .form-container h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  /* Formulário lado a lado */
+  form {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .form-left {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .form-right {
+    width: 50%;
+  }
+  
+  form label {
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input[type="date"],
+  select {
+    background-color: #e5e5ee;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #999;
+    margin-top: 4px;
+  }
+  
+  /* Checkbox alinhado */
+  input[type="checkbox"] {
+    margin-right: 6px;
+    transform: scale(1.2);
+  }
+  
+  /* Espaços */
+  .espacos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    background: #ccc;
+    padding: 10px;
+    border-radius: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+  }
+  
+  .espaco-card {
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+  }
+  
+  .espaco-card:hover {
+    border-color: #6f86ff;
+  }
+  
+  .espaco-card.selected {
+    background-color: #bfcaff;
+    border-color: #4a5bff;
+  }
+  
+  /* Botão */
+  button[type="submit"] {
+    background-color: #2c2f63;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    align-self: flex-end;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #1f214a;
+  }
+
+  .btn-fechar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #ff5e5e;
+    cursor: pointer;
+  }
+  .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.form-group-horizontal {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.horario-group label {
+  margin-bottom: 4px;
+}
+
+.horario-selects {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.horario-selects select {
+  width: 100px;
+}
+
+.input-icon {
+  position: relative;
+}
+
+input[type="date"] {
+  background-color: #e5e5ee;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #999;
+  margin-top: 4px;
+  width: 100%;
+}

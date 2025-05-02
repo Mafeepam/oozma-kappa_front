@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Espaço</title>
+  <link rel="stylesheet" href="/Protótipo/CSS/styleEditarEspaco.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <div>
+      <div class="logo">
+        <img src="/Protótipo/Imagens/logo.png" alt="Logo">
+      </div>
+      <div class="menu">
+        <a href="admin.html">Início</a>
+        <a href="espacosacademicos.html" class="active">Espaços Acad.</a>
+        <a href="professores.html">Professores</a>
+        <a href="login_1.html" class="logout">⟵ Log-out</a>
+      </div>
+    </div>
+    <div class="profile">
+      <img src="/Protótipo/Imagens/5987462.png" alt="Avatar Admin" />
+      <div>
+        <strong>Admin</strong><br />
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <h1>Espaço Acadêmico</h1>
+    <div class="form-container">
+      <h2>Editar espaço</h2>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" />
+
+      <label for="tipo">Tipo:</label>
+      <select id="tipo" name="tipo" required>
+        <option value="sala">Sala</option>
+        <option value="laboratorio">Laboratório</option>
+        <option value="auditorio">Auditório</option>
+      </select>
+      
+
+
+      <label for="capacidade">Capacidade:</label>
+      <input type="number" id="capacidade" />
+
+      <div class="botoes">
+        <button onclick="salvarEspaco()">Salvar</button>
+        <button class="cancelar" onclick="cancelarEdicao()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/Protótipo/JS/editarEspacos.js"></script>
+</body>
+</html>

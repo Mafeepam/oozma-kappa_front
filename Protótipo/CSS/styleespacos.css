@@ -1,0 +1,162 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background-color: #f3f3f3;
+  position: relative; /* Adicionado para controle do título */
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 250px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 10px;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 125px;
+}
+
+.menu a {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.menu a.active {
+  background-color: #bfcaff;
+  color: #000;
+}
+
+.menu a.logout {
+  color: red;
+  border: 1px solid red;
+  background-color: #ffecec;
+}
+
+.profile {
+  margin-top: 20px;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile img {
+  width: 38px;
+  border-radius: 50%;
+}
+
+.editar {
+  cursor: pointer;
+}
+
+.main {
+  flex-grow: 1;
+  padding: 40px 50px;
+  background-color: #fefefe;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.btn-cadastrar {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 20px;
+  transition: background-color 0.2s;
+}
+
+.btn-cadastrar:hover {
+  background-color: #1d4ed8;
+}
+
+#search {
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+th, td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: 600;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.btn-editar, .btn-excluir {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-editar {
+  background-color: #3b82f6;
+  color: white;
+  margin-right: 8px;
+}
+
+.btn-editar:hover {
+  background-color: #2563eb;
+}
+
+.btn-excluir {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn-excluir:hover {
+  background-color: #dc2626;
+}
