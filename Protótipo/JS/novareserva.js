@@ -19,14 +19,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       card.innerText = espaco.nome;
       card.dataset.id = espaco.id;  // para referência posterior
       
-      // Ao clicar, remove a seleção de todos os cards e adiciona ao atual,
-      // garantindo que apenas um seja selecionado por reserva.
+      // Garante que somente um espaço seja selecionado.
       card.onclick = () => {
-        // Remove a classe 'selected' de todos os cards
-        document.querySelectorAll('.espaco-card.selected').forEach(element => {
-          element.classList.remove('selected');
-        });
-        // Adiciona a classe 'selected' somente no card clicado
+        document.querySelectorAll('.espaco-card.selected')
+          .forEach(el => el.classList.remove('selected'));
         card.classList.add('selected');
       };
       container.appendChild(card);
@@ -64,10 +60,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const inicio = form.get("inicio");         // formato: HH:mm:ss
     const fim = form.get("fim");               // formato: HH:mm:ss
 
-    // Validação simples de horário:
-    const h1 = parseInt(inicio.split(":")[0]);
-    const h2 = parseInt(fim.split(":")[0]);
-    if (h2 <= h1 || h2 - h1 > 4) {
+    // Validação de horário (o fim precisa ser após o início e a duração máxima é de 4 horas)
+    const hInicio = parseInt(inicio.split(":")[0]);
+    const hFim = parseInt(fim.split(":")[0]);
+    if (hFim <= hInicio || hFim - hInicio > 4) {
       alert("A duração da reserva deve ser de no máximo 4 horas e o horário final deve ser após o inicial.");
       return;
     }
@@ -78,15 +74,38 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
     
-    // Monta o objeto que o backend espera. Aqui estamos assumindo que o campo "espaco"
-    // armazena o ID do espaço.
+    // Antes de enviar, busca todas as reservas para verificar duplicidade
+    try {
+      const resp = await fetch(`${API_BASE}/reservas`);
+      if (!resp.ok) throw new Error("Erro ao carregar reservas para verificação.");
+      const reservasExistentes = await resp.json();
+      
+      // Supondo que o backend envia 'data' no formato ISO "yyyy-MM-dd"
+      // e que já estamos armazenando ou exibindo o nome do espaço
+      const reservaDuplicada = reservasExistentes.find(r =>
+        r.data === data &&
+        r.horaInicio === inicio &&
+        r.horaFim === fim &&
+        r.espaco === espacoSelecionado.innerText
+      );
+      
+      if (reservaDuplicada) {
+        alert("Já existe uma reserva para esta data, horário e espaço.");
+        return;
+      }
+    } catch (error) {
+      console.error("Erro na verificação de reservas duplicadas:", error);
+      alert("Não foi possível verificar reservas existentes.");
+      return;
+    }
+    
+    // Monta o objeto de dados a ser enviado; usamos innerText para enviar o nome do espaço
     const dados = {
       data: data,
       horaInicio: inicio,
       horaFim: fim,
-      espaco: espacoSelecionado.innerText  // agora envia o nome do espaço
+      espaco: espacoSelecionado.innerText
     };
-    
     
     console.log("Dados da reserva:", dados);
     
@@ -100,13 +119,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       const dataResp = await resposta.json();
       console.log("Reserva criada:", dataResp);
       alert("Reserva realizada com sucesso!");
-      // Opcional: redirecionar ou limpar o formulário
+      // Aqui você pode limpar o formulário ou redirecionar, se desejado.
     } catch (error) {
       console.error("Erro ao enviar a solicitação de reserva:", error);
       alert("Erro ao enviar a solicitação de reserva.");
     }
   });
 
+  // Expor a função para voltar à página de reservas
   window.voltarParaReservas = voltarParaReservas;
 });
 
