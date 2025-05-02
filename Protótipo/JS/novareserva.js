@@ -1,9 +1,19 @@
-document.addEventListener('DOMContentLoaded', async () => {
+function voltarParaReservas() {
+  window.location.href = "reservas.html";
+}
 
+document.addEventListener('DOMContentLoaded', async () => {
+  const API_BASE = 'http://localhost:8080/api';
+  
   // Carregar os espaços disponíveis na área de seleção
   const container = document.getElementById('espacos');
+  if (!container) {
+    console.error("Elemento com id 'espacos' não encontrado.");
+    return;
+  }
+  
   try {
-    const response = await fetch('http://localhost:8080/api/espacos');  // Verifique este endpoint do seu backend
+    const response = await fetch(`${API_BASE}/espacos`);
     if (!response.ok) throw new Error("Erro ao carregar espaços.");
     const espacos = await response.json();
     
@@ -11,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const card = document.createElement('div');
       card.classList.add('espaco-card');
       card.innerText = espaco.nome;
-      card.dataset.id = espaco.id;  // ou espaco.nome, conforme sua lógica
+      card.dataset.id = espaco.id;  // para referência posterior
       card.onclick = () => {
         card.classList.toggle('selected');
       };
@@ -25,6 +35,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Configurar os selects de horário
   const inicioSelect = document.getElementById('inicio');
   const fimSelect = document.getElementById('fim');
+  if (!inicioSelect || !fimSelect) {
+    console.error("Selects de horário não encontrados.");
+    return;
+  }
+  
   for (let h = 7; h <= 22; h++) {
     const hora = h.toString().padStart(2, '0') + ":00:00";
     inicioSelect.add(new Option(hora, hora));
@@ -32,14 +47,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Listener para o envio da reserva
-  document.getElementById('formReserva').addEventListener('submit', async function(e) {
+  const formReserva = document.getElementById('formReserva');
+  if (!formReserva) {
+    console.error("Formulário de reserva não encontrado.");
+    return;
+  }
+  
+  formReserva.addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = new FormData(this);
     const data = form.get('data');           // formato: yyyy-MM-dd
     const inicio = form.get("inicio");         // formato: HH:mm:ss
     const fim = form.get("fim");               // formato: HH:mm:ss
 
-    // Aqui, adicione validações de horário se necessário, por exemplo..
+    // Validação simples de horário:
     const h1 = parseInt(inicio.split(":")[0]);
     const h2 = parseInt(fim.split(":")[0]);
     if (h2 <= h1 || h2 - h1 > 4) {
@@ -53,7 +74,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
     
-    // Monte o objeto que o backend espera. Se você estiver armazenando o ID do espaço por exemplo:
+    // Monta o objeto que o backend espera. Aqui estamos assumindo que o campo "espaco"
+    // armazena o ID do espaço.
     const dados = {
       data: data,
       horaInicio: inicio,
@@ -64,7 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log("Dados da reserva:", dados);
     
     try {
-      const resposta = await fetch('http://localhost:8080/api/reservas', {
+      const resposta = await fetch(`${API_BASE}/reservas`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dados)
@@ -73,10 +95,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       const dataResp = await resposta.json();
       console.log("Reserva criada:", dataResp);
       alert("Reserva realizada com sucesso!");
-      // Aqui você pode, por exemplo, redirecionar ou limpar o formulário
+      // Opcional: redirecionar ou limpar o formulário
     } catch (error) {
       console.error("Erro ao enviar a solicitação de reserva:", error);
       alert("Erro ao enviar a solicitação de reserva.");
     }
   });
+
+  window.voltarParaReservas = voltarParaReservas;
 });
