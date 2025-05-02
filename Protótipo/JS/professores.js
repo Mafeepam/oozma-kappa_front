@@ -1,5 +1,5 @@
-function editarProfessor(nome, email, curso, id) {
-  // Aqui você pode armazenar o id em sessionStorage para a tela de edição ter o professor certo
-  sessionStorage.setItem("professorId", id);
+function editarProfessor(nome, email, curso) {
+  const professor = { nome, email, curso };
+  sessionStorage.setItem("professorEditar", JSON.stringify(professor));
   window.location.href = 'editarprofessor.html';
 }
