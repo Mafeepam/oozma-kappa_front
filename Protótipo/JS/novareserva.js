@@ -84,8 +84,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       data: data,
       horaInicio: inicio,
       horaFim: fim,
-      espaco: espacoSelecionado.dataset.id
+      espaco: espacoSelecionado.innerText  // agora envia o nome do espaço
     };
+    
     
     console.log("Dados da reserva:", dados);
     

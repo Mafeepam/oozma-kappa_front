@@ -1,14 +1,14 @@
-// Defina a URL base da API para facilitar a manutenção
+// Define a URL base da API para facilitar a manutenção
 const API_BASE = 'http://localhost:8080/api';
 
-// Arrays para os nomes dos dias e meses
+// Arrays com os nomes dos dias e dos meses
 const daysOfWeek = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 const monthNames = [
   'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
 ];
 
-// Utilize a data atual para definir o mês e o ano
+// Para que o calendário comece com o mês corrente
 let today = new Date();
 let currentYear = today.getFullYear();
 let currentMonth = today.getMonth(); // 0 = Janeiro
@@ -17,7 +17,7 @@ let currentMonth = today.getMonth(); // 0 = Janeiro
 let reservas = [];
 
 /**
- * Carrega as reservas do backend e armazena em 'reservas'
+ * Carrega as reservas do backend e armazena-as em 'reservas'
  */
 async function carregarReservas() {
   try {
@@ -25,7 +25,7 @@ async function carregarReservas() {
     if (!response.ok) throw new Error("Erro ao carregar reservas.");
     const data = await response.json();
     console.log("Reservas recebidas:", data);
-    reservas = data; // Armazena os objetos completos de reservas
+    reservas = data; // Cada objeto deve ter pelo menos as propriedades: data, horaInicio, horaFim, espaco
   } catch (error) {
     console.error('Erro ao carregar reservas do banco:', error);
   }
@@ -40,13 +40,13 @@ function renderCalendar() {
     console.error("Elemento 'calendar' não encontrado.");
     return;
   }
-  calendar.innerHTML = ''; 
-
+  calendar.innerHTML = '';
+  
   const monthTitle = document.getElementById('monthTitle');
   if (monthTitle) {
     monthTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
   }
-
+  
   // Cria o cabeçalho dos dias da semana
   daysOfWeek.forEach(day => {
     const dayDiv = document.createElement('div');
@@ -54,25 +54,25 @@ function renderCalendar() {
     dayDiv.textContent = day;
     calendar.appendChild(dayDiv);
   });
-
-  // Calcula o primeiro dia da semana e a quantidade de dias no mês
+  
+  // Calcula o primeiro dia da semana e quantidade de dias do mês
   const firstDay = new Date(currentYear, currentMonth, 1).getDay();
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-  // Adiciona espaços vazios caso o mês não comece no primeiro dia da semana
+  
+  // Adiciona espaços vazios se o mês não começar no primeiro dia da semana
   for (let i = 0; i < firstDay; i++) {
     const emptyDiv = document.createElement('div');
     emptyDiv.classList.add('empty');
     calendar.appendChild(emptyDiv);
   }
-
-  // Para cada dia do mês, cria um elemento e, se houver reserva, marca-o
+  
+  // Para cada dia do mês, cria um elemento e marca como reservado se houver uma reserva.
   for (let d = 1; d <= daysInMonth; d++) {
     const dateDiv = document.createElement('div');
     dateDiv.classList.add('date');
     dateDiv.textContent = d;
     
-    // Verifica se esse dia possui alguma reserva
+    // Verifica se esse dia possui alguma reserva pelo menos
     const isReserved = reservas.some(r => {
       const resDate = new Date(r.data);
       return (
@@ -81,17 +81,18 @@ function renderCalendar() {
         resDate.getDate() === d
       );
     });
+    
     if (isReserved) {
       dateDiv.classList.add('reserved');
     }
     calendar.appendChild(dateDiv);
   }
-
+  
   updateReservaCount();
 }
 
 /**
- * Atualiza o total de reservas exibido na interface.
+ * Atualiza o total de reservas exibido (por exemplo, no rodapé do calendário)
  */
 function updateReservaCount() {
   const totalReservationsElement = document.getElementById('totalReservas');
@@ -101,7 +102,8 @@ function updateReservaCount() {
 }
 
 /**
- * Renderiza os cards de reserva, preenchendo o container com id "listaReservas".
+ * Renderiza os cards de reserva no container com id "listaReservas".
+ * Cada card mostrará a data, o horário e o espaço reservado.
  */
 function renderReservationList() {
   const container = document.getElementById("listaReservas");
@@ -110,27 +112,29 @@ function renderReservationList() {
     return;
   }
   container.innerHTML = ""; // Limpa o container
-
+  
   reservas.forEach(reserva => {
     const card = document.createElement("div");
     card.classList.add("reserva-card");
-
+    
     // Converte a data para um formato legível
     const resDate = new Date(reserva.data);
     const dateStr = `${resDate.getDate()}/${resDate.getMonth() + 1}/${resDate.getFullYear()}`;
-
+    
+    // Define os detalhes da reserva (ajuste conforme a estrutura dos seus objetos)
     card.innerHTML = `
       <h4>${dateStr}</h4>
       <p>Horário: ${reserva.horaInicio} - ${reserva.horaFim}</p>
       <p>Espaço: ${reserva.espaco}</p>
     `;
+    
     container.appendChild(card);
   });
 }
 
 /**
- * Altera o mês exibido no calendário.
- * @param {number} offset - O valor para incrementar ou decrementar o mês (ex.: -1 ou 1)
+ * Permite navegar entre os meses do calendário.
+ * @param {number} offset - Valor para incrementar ou decrementar o mês (ex.: -1 para mês anterior, 1 para próximo mês)
  */
 function changeMonth(offset) {
   currentMonth += offset;
@@ -146,7 +150,7 @@ function changeMonth(offset) {
 }
 
 /**
- * Opcional: Reseta as reservas apenas na interface.
+ * (Opcional) Reseta as reservas exibidas na interface.
  */
 function resetarReservas() {
   reservas = [];
@@ -155,7 +159,7 @@ function resetarReservas() {
   updateReservaCount();
 }
 
-// Inicializa o carregamento e renderização após o DOM estar completamente carregado
+// Quando o DOM estiver carregado, carrega as reservas e renderiza o calendário e os cards
 document.addEventListener('DOMContentLoaded', async () => {
   await carregarReservas();
   renderCalendar();
