@@ -7,60 +7,86 @@
 </head>
 <body>
   <div class="container">
-    
     <div class="sidebar">
-        <div>
-          <div class="logo">
-            <img src="/Protótipo/Imagens/logo.png" alt="Logo">
-          </div>
-          <div class="menu">
-            <a href="admin.html" >Início</a>
-            <a href="espacosacademicos.html">Espaços Acadêmico</a>
-            <a href="professores.html"class="active">Professores</a>
-            <a href="login_1.html" class="logout" onclick="logout()">⟵ Logout</a>
-          </div>
+      <div>
+        <div class="logo">
+          <img src="/Protótipo/Imagens/logo.png" alt="Logo">
         </div>
-        <div class="profile">
-          <img src="/Protótipo/Imagens/5987462.png" alt="Avatar Admin">
-          <div>
-            <strong>Admin</strong><br>
-          </div>
+        <div class="menu">
+          <a href="admin.html">Início</a>
+          <a href="espacosacademicos.html">Espaços Acadêmico</a>
+          <a href="professores.html" class="active">Professores</a>
+          <a href="login_1.html" class="logout" onclick="logout()">⟵ Logout</a>
         </div>
       </div>
+      <div class="profile">
+        <img src="/Protótipo/Imagens/5987462.png" alt="Avatar Admin">
+        <div>
+          <strong>Admin</strong><br>
+        </div>
+      </div>
+    </div>
 
     <!-- Conteúdo principal -->
     <main class="main-content">
       <h1>Gerenciamento de Professores</h1>
       <div class="card">
-        
-        <!-- Formulário -->
+        <!-- Formulário de Cadastro -->
         <div class="form-section">
           <h2>Cadastrar Professor</h2>
-          <input type="text" placeholder="Nome:">
-          <input type="email" placeholder="Email:">
-          <input type="text" placeholder="Curso:">
+          <!-- Inputs com IDs para facilitar a coleta dos dados via JS -->
+          <input type="text" id="novoNome" placeholder="Nome:">
+          <input type="email" id="novoEmail" placeholder="Email:">
+          <input type="text" id="novoCurso" placeholder="Curso:">
           <br>
-          <button>Cadastrar Professor</button>
+          <!-- Botão de cadastro com id -->
+          <button id="btnCadastrar">Cadastrar Professor</button>
         </div>
 
-        <!-- Lista -->
+        <!-- Lista de Professores (estática) -->
         <div class="list-section">
           <h2>Lista de professores</h2>
           <input type="text" placeholder="Pesquisar" class="search">
-          <table>
-            <tr><th>Nome</th><th>Ações</th></tr>
-            <tr><td>Ana Silva</td><td><button class="edit" onclick="editarProfessor('Ana Silva', 'ana@pro.ucsal.br', 'Análise e Desenvolvimento de Sistemas')">Editar</button></td></tr>
-            <tr><td>Bruno Costa</td><td><button class="edit" onclick="editarProfessor('Bruno Costa', 'bruno@pro.ucsal.br', 'Engenharia Civil')">Editar</button></td></tr>
-            <tr><td>Clara Souza</td><td><button class="edit" onclick="editarProfessor('Clara Souza', 'clara@pro.ucsal.br', 'Engenharia Química')">Editar</button></td></tr>
-            <tr><td>Daniel Santos</td><td><button class="edit" onclick="editarProfessor('Daniel Santos', 'daniel@pro.ucsal.br', 'Engenharia Mecânica')">Editar</button></td></tr>
-            <tr><td>Fernando Borges</td><td><button class="edit" onclick="editarProfessor('Fernando Borges', 'fernando.borges@pro.ucsal.br', 'Engenharia de Software')">Editar</button></td></tr>
+          <table id="tabelaProfessores">
+            <tr>
+              <th>Nome</th>
+              <th>Ações</th>
+            </tr>
+            <!-- Exemplo de linha: inclua o id como primeiro parâmetro para evitar troca de dados -->
+            <tr>
+              <td>Ana Silva</td>
+              <td>
+                <button class="edit" onclick="editarProfessor(1, 'Ana Silva', 'ana@pro.ucsal.br', 'Análise e Desenvolvimento de Sistemas')">Editar</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Bruno Costa</td>
+              <td>
+                <button class="edit" onclick="editarProfessor(2, 'Bruno Costa', 'bruno@pro.ucsal.br', 'Engenharia Civil')">Editar</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Clara Souza</td>
+              <td>
+                <button class="edit" onclick="editarProfessor(3, 'Clara Souza', 'clara@pro.ucsal.br', 'Engenharia Química')">Editar</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Daniel Santos</td>
+              <td>
+                <button class="edit" onclick="editarProfessor(4, 'Daniel Santos', 'daniel@pro.ucsal.br', 'Engenharia Mecânica')">Editar</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Fernando Borges</td>
+              <td>
+                <button class="edit" onclick="editarProfessor(5, 'Fernando Borges', 'fernando.borges@pro.ucsal.br', 'Engenharia de Software')">Editar</button>
+              </td>
+            </tr>
           </table>
-          
         </div>
-
       </div>
     </main>
-
   </div>
   <script src="/Protótipo/JS/professores.js"></script>
 </body>
