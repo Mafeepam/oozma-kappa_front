@@ -7,6 +7,7 @@
 </head>
 <body>
   <div class="container">
+    <!-- Sidebar -->
     <div class="sidebar">
       <div>
         <div class="logo">
@@ -34,13 +35,12 @@
         <!-- Formulário de Cadastro -->
         <div class="form-section">
           <h2>Cadastrar Professor</h2>
-          <!-- Inputs com IDs para facilitar a coleta de dados via JS -->
-          <input type="text" id="novoNome" placeholder="Nome:">
-          <input type="email" id="novoEmail" placeholder="Email:">
-          <input type="text" id="novoCurso" placeholder="Curso:">
-          <br>
-          <!-- Botão de cadastro -->
-          <button id="btnCadastrar">Cadastrar Professor</button>
+          <!-- Parte do formulário de cadastro -->
+        <input type="text" id="novoNome" placeholder="Nome:">
+        <input type="email" id="novoEmail" placeholder="Email:">
+        <input type="text" id="novoCurso" placeholder="Curso:">
+        <button id="btnCadastrar">Cadastrar Professor</button>
+
         </div>
 
         <!-- Lista de Professores -->
@@ -54,7 +54,7 @@
               <th>Curso</th>
               <th>Ações</th>
             </tr>
-            <!-- Exemplo estático para teste. Observe que o botão "Editar" está presente e recebe o ID como primeiro parâmetro -->
+            <!-- Exemplo estático para teste -->
             <tr>
               <td>Ana Silva</td>
               <td>ana@pro.ucsal.br</td>

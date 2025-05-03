@@ -1,3 +1,4 @@
+// Função para carregar os professores do back-end e montar a tabela
 async function carregarProfessores() {
   try {
     console.log("Iniciando a busca por professores...");
@@ -13,7 +14,7 @@ async function carregarProfessores() {
       console.error("Elemento da tabela não encontrado!");
       return;
     }
-    // Monta o header da tabela e limpa o conteúdo antigo
+    // Monta o cabeçalho da tabela e limpa o conteúdo antigo
     tabela.innerHTML = `
       <tr>
         <th>Nome</th>
@@ -41,6 +42,7 @@ async function carregarProfessores() {
   }
 }
 
+// Função que redireciona para a página de edição com os dados armazenados no sessionStorage
 function editarProfessor(id, nome, email, curso) {
   const professor = { id, nome, email, curso };
   console.log("Professor para editar:", professor);
@@ -48,6 +50,7 @@ function editarProfessor(id, nome, email, curso) {
   window.location.href = "editarprofessor.html";
 }
 
+// Função para excluir um professor via API
 function excluirProfessor(id) {
   const confirmacao = confirm("Tem certeza que deseja excluir este professor?");
   if (!confirmacao) return;
@@ -66,13 +69,18 @@ function excluirProfessor(id) {
     });
 }
 
+// Quando a página carrega, busca os professores
 document.addEventListener("DOMContentLoaded", carregarProfessores);
 
+// Evento conectado ao botão de cadastro para enviar o POST
 if (document.getElementById("btnCadastrar")) {
   document.getElementById("btnCadastrar").addEventListener("click", async () => {
     const nome = document.getElementById("novoNome").value.trim();
     const email = document.getElementById("novoEmail").value.trim();
     const curso = document.getElementById("novoCurso").value.trim();
+    
+    // Debug: confirmar os valores captados
+    console.log("Valores capturados no cadastro:", { nome, email, curso });
     
     if (!nome || !email || !curso) {
       alert("Preencha todos os campos!");

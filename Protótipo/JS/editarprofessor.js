@@ -36,10 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Função para cancelar a edição e voltar para a listagem
 function cancelar() {
   window.location.href = "professores.html";
 }
 
+// Função para excluir o professor a partir da página de edição
 function excluir() {
   const professorJSON = sessionStorage.getItem("professorEditar");
   if (!professorJSON) {
