@@ -27,58 +27,70 @@
       </div>
     </div>
 
-    <!-- Conteúdo principal -->
+    <!-- Conteúdo Principal -->
     <main class="main-content">
       <h1>Gerenciamento de Professores</h1>
       <div class="card">
         <!-- Formulário de Cadastro -->
         <div class="form-section">
           <h2>Cadastrar Professor</h2>
-          <!-- Inputs com IDs para facilitar a coleta dos dados via JS -->
+          <!-- Inputs com IDs para facilitar a coleta de dados via JS -->
           <input type="text" id="novoNome" placeholder="Nome:">
           <input type="email" id="novoEmail" placeholder="Email:">
           <input type="text" id="novoCurso" placeholder="Curso:">
           <br>
-          <!-- Botão de cadastro com id -->
+          <!-- Botão de cadastro -->
           <button id="btnCadastrar">Cadastrar Professor</button>
         </div>
 
-        <!-- Lista de Professores (estática) -->
+        <!-- Lista de Professores -->
         <div class="list-section">
-          <h2>Lista de professores</h2>
+          <h2>Lista de Professores</h2>
           <input type="text" placeholder="Pesquisar" class="search">
           <table id="tabelaProfessores">
             <tr>
               <th>Nome</th>
+              <th>Email</th>
+              <th>Curso</th>
               <th>Ações</th>
             </tr>
-            <!-- Exemplo de linha: inclua o id como primeiro parâmetro para evitar troca de dados -->
+            <!-- Exemplo estático para teste. Observe que o botão "Editar" está presente e recebe o ID como primeiro parâmetro -->
             <tr>
               <td>Ana Silva</td>
+              <td>ana@pro.ucsal.br</td>
+              <td>Análise e Desenvolvimento de Sistemas</td>
               <td>
                 <button class="edit" onclick="editarProfessor(1, 'Ana Silva', 'ana@pro.ucsal.br', 'Análise e Desenvolvimento de Sistemas')">Editar</button>
               </td>
             </tr>
             <tr>
               <td>Bruno Costa</td>
+              <td>bruno@pro.ucsal.br</td>
+              <td>Engenharia Civil</td>
               <td>
                 <button class="edit" onclick="editarProfessor(2, 'Bruno Costa', 'bruno@pro.ucsal.br', 'Engenharia Civil')">Editar</button>
               </td>
             </tr>
             <tr>
               <td>Clara Souza</td>
+              <td>clara@pro.ucsal.br</td>
+              <td>Engenharia Química</td>
               <td>
                 <button class="edit" onclick="editarProfessor(3, 'Clara Souza', 'clara@pro.ucsal.br', 'Engenharia Química')">Editar</button>
               </td>
             </tr>
             <tr>
               <td>Daniel Santos</td>
+              <td>daniel@pro.ucsal.br</td>
+              <td>Engenharia Mecânica</td>
               <td>
                 <button class="edit" onclick="editarProfessor(4, 'Daniel Santos', 'daniel@pro.ucsal.br', 'Engenharia Mecânica')">Editar</button>
               </td>
             </tr>
             <tr>
               <td>Fernando Borges</td>
+              <td>fernando.borges@pro.ucsal.br</td>
+              <td>Engenharia de Software</td>
               <td>
                 <button class="edit" onclick="editarProfessor(5, 'Fernando Borges', 'fernando.borges@pro.ucsal.br', 'Engenharia de Software')">Editar</button>
               </td>

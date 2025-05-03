@@ -1,4 +1,3 @@
-// Carrega a lista de professores do back-end
 async function carregarProfessores() {
   try {
     console.log("Iniciando a busca por professores...");
@@ -14,7 +13,7 @@ async function carregarProfessores() {
       console.error("Elemento da tabela não encontrado!");
       return;
     }
-    // Monta o header e limpa o restante da tabela
+    // Monta o header da tabela e limpa o conteúdo antigo
     tabela.innerHTML = `
       <tr>
         <th>Nome</th>
@@ -26,7 +25,6 @@ async function carregarProfessores() {
     
     professores.forEach(professor => {
       const linha = document.createElement("tr");
-      // Importante: a função editarProfessor recebe primeiro o id, depois os demais dados
       linha.innerHTML = `
         <td>${professor.nome}</td>
         <td>${professor.email}</td>
@@ -43,7 +41,6 @@ async function carregarProfessores() {
   }
 }
 
-// Redireciona para a página de edição com os dados do professor armazenados no sessionStorage
 function editarProfessor(id, nome, email, curso) {
   const professor = { id, nome, email, curso };
   console.log("Professor para editar:", professor);
@@ -51,7 +48,6 @@ function editarProfessor(id, nome, email, curso) {
   window.location.href = "editarprofessor.html";
 }
 
-// Exclui o professor chamado, usando o id
 function excluirProfessor(id) {
   const confirmacao = confirm("Tem certeza que deseja excluir este professor?");
   if (!confirmacao) return;
@@ -70,15 +66,10 @@ function excluirProfessor(id) {
     });
 }
 
-// Executa o carregamento dos professores quando a página carrega, se o elemento da tabela existir
-if (document.getElementById("tabelaProfessores")) {
-  document.addEventListener("DOMContentLoaded", carregarProfessores);
-}
+document.addEventListener("DOMContentLoaded", carregarProfessores);
 
-// Evento para cadastrar um novo professor no back-end
 if (document.getElementById("btnCadastrar")) {
   document.getElementById("btnCadastrar").addEventListener("click", async () => {
-    // Aqui usamos os IDs "novoNome", "novoEmail" e "novoCurso" para os inputs de cadastro
     const nome = document.getElementById("novoNome").value.trim();
     const email = document.getElementById("novoEmail").value.trim();
     const curso = document.getElementById("novoCurso").value.trim();
@@ -99,7 +90,6 @@ if (document.getElementById("btnCadastrar")) {
         throw new Error("Erro ao cadastrar professor, status: " + response.status);
       }
       alert("Professor cadastrado com sucesso!");
-      // Limpa os campos para nova inserção
       document.getElementById("novoNome").value = "";
       document.getElementById("novoEmail").value = "";
       document.getElementById("novoCurso").value = "";

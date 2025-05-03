@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Tenta recuperar os dados do professor para edição a partir do sessionStorage
   const professorJSON = sessionStorage.getItem("professorEditar");
   if (!professorJSON) {
     console.error("Nenhum professor encontrado para edição.");
@@ -9,12 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const professor = JSON.parse(professorJSON);
-  // Preenche os inputs de edição com os dados do professor
   document.getElementById("nome").value = professor.nome;
   document.getElementById("email").value = professor.email;
   document.getElementById("curso").value = professor.curso;
 
-  // Quando o formulário for enviado, realiza a atualização via método PUT
   document.getElementById("formEditar").addEventListener("submit", async (e) => {
     e.preventDefault();
     const nome = document.getElementById("nome").value.trim();
@@ -39,12 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Função para cancelar a edição e voltar para a lista
 function cancelar() {
   window.location.href = "professores.html";
 }
 
-// Função para excluir o professor a partir da página de edição
 function excluir() {
   const professorJSON = sessionStorage.getItem("professorEditar");
   if (!professorJSON) {
